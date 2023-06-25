@@ -1,0 +1,12 @@
+{
+  "translation": {
+    "ROOT_title": "To - do",
+    "ROOT_button_1": "Create",
+    "ROOT_empty_title": "No created note found",
+
+    "ERROR_page_not_found_title": "Sorry, an unexpected error has occurred.",
+    "ERROR_page_not_found_exclamation": "Oops!",
+
+    "CARD_button_edit": "Edit"
+  }
+}
