@@ -22,7 +22,15 @@ const NoteCard = ({
 }) => {
   const navigate = useNavigate();
   return (
-    <Card sx={{ width: 275, ...sx }}>
+    <Card
+      sx={{
+        width: 275,
+        "@media (max-width:350px)": {
+          width: 190
+        },
+        ...sx,
+      }}
+    >
       <CardContent sx={{ height: "150px" }}>
         <Typography
           sx={{

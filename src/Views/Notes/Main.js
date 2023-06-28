@@ -84,12 +84,12 @@ const Main = () => {
         <Grid
           container
           sx={{ width: "100%", margin: 0 }}
-          justifyContent="center"
           alignItems="center"
+          columnGap={2}
           rowSpacing={3}
         >
           {notes.map((note, index) => (
-            <Grid item xs={12} sm={6} md sx={{ padding: 0 }} key={index}>
+            <Grid item xs={12} md sx={{ padding: 0 }} key={index}>
               <NoteCard
                 owner={note?.owner}
                 title={note?.title}
