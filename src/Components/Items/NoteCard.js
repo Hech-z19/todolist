@@ -5,12 +5,10 @@ import {
   Typography,
   IconButton,
 } from "@mui/material";
-import { Delete } from "@mui/icons-material";
+import { Delete, Edit } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 
-import translate from "Utils/translate";
 import colors from "Utils/colors";
-import CustomButtom from "Components/Items/CustomButton";
 
 const NoteCard = ({
   owner,
@@ -87,11 +85,11 @@ const NoteCard = ({
           dangerouslySetInnerHTML={{ __html: content }}
         />
       </CardContent>
-      <CardActions sx={{ justifyContent: "space-between" }}>
-        <CustomButtom onClick={onClick}>
-          {translate("CARD_button_edit")}
-        </CustomButtom>
-        <IconButton onClick={onDelete}>
+      <CardActions sx={{ justifyContent: "flex-end" }}>
+        <IconButton sx={{ color: colors.main }} onClick={onClick}>
+          <Edit />
+        </IconButton>
+        <IconButton sx={{ color: colors.alert }} onClick={onDelete}>
           <Delete />
         </IconButton>
       </CardActions>
