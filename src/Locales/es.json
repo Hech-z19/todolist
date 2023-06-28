@@ -3,11 +3,21 @@
     "ROOT_title": "To - do",
     "ROOT_button_1": "Crear",
     "ROOT_button_2": "Inicio",
-    "ROOT_empty_title": "No se encuentra ninguna nota creada",
+    "ROOT_button_3": "Favoritos",
+    "ROOT_button_4": "Papelera",
+    "ROOT_empty_title": "Crea tu primera nota",
     "ROOT_delete_dialog_title": "¿Quieres eliminar la nota?",
     "ROOT_delete_dialog_text": "Debes considerar que se eliminará para siempre y no podrás recuperarla",
     "ROOT_delete_dialog_button_1": "Cancelar",
     "ROOT_delete_dialog_button_2": "Eliminar",
+    "ROOT_trash_moved": "Se ha movido la nota a la papelera",
+
+    "HOME_title": "Inicio",
+
+    "FAV_title": "Favoritos",
+
+    "TRASH_title": "Papelera",
+    "TRASH_recover_button": "Recuperar:",
 
     "ERROR_page_not_found_title": "Lo sentimos, se ha producido un error inesperado.",
     "ERROR_page_not_found_exclamation": "Ay!",
