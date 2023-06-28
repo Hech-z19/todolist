@@ -26,6 +26,9 @@ const Transition = forwardRef(function Transition(props, ref) {
 const Main = () => {
   const navigate = useNavigate();
   const location = useLocation();
+
+  const empty = translate("ROOT_empty_title");
+
   const [openSuccess, setOpenSuccess] = useState(
     false || location?.state?.success
   );
@@ -75,7 +78,7 @@ const Main = () => {
           fontFamily="cursive"
           fontWeight={600}
         >
-          {translate("ROOT_empty_title")}
+          {empty}
         </Typography>
       ) : (
         <Grid
@@ -119,7 +122,7 @@ const Main = () => {
         <Alert
           onClose={() => handleCloseSnack()}
           severity="success"
-          sx={{ width: "100%" }}
+          sx={{ width: "100%", boxShadow: "10px 10px 10px grey" }}
         >
           {location?.state?.text}
         </Alert>
