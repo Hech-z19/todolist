@@ -2,5 +2,7 @@
   "main": "#19A7CE",
   "secondary": "#146C94",
   "light": "#F6F1F1",
-  "dark": "#000000"
+  "dark": "#000000",
+  "pale": "#9db8bf",
+  "dark_pale": "#596a6f"
 }
