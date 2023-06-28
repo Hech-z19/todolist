@@ -5,10 +5,17 @@ import {
   Typography,
   IconButton,
 } from "@mui/material";
-import { Delete, Edit } from "@mui/icons-material";
+import {
+  Delete,
+  Edit,
+  FavoriteBorder,
+  Favorite,
+  SettingsBackupRestore,
+} from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 
 import colors from "Utils/colors";
+import translate from "Utils/translate";
 
 const NoteCard = ({
   owner,
@@ -19,6 +26,10 @@ const NoteCard = ({
   src,
   sx,
   onDelete,
+  onFavorite,
+  favActive,
+  isDeleted,
+  onRecover,
 }) => {
   const navigate = useNavigate();
   return (
@@ -26,7 +37,7 @@ const NoteCard = ({
       sx={{
         width: 275,
         "@media (max-width:350px)": {
-          width: 190
+          width: 190,
         },
         ...sx,
       }}
@@ -94,8 +105,20 @@ const NoteCard = ({
         />
       </CardContent>
       <CardActions sx={{ justifyContent: "flex-end" }}>
-        <IconButton sx={{ color: colors.main }} onClick={onClick}>
-          <Edit />
+        {isDeleted ? (
+          <Typography fontSize="0.7rem">
+            {translate("TRASH_recover_button")}
+          </Typography>
+        ) : (
+          <IconButton sx={{ color: colors.favorite }} onClick={onFavorite}>
+            {favActive ? <Favorite /> : <FavoriteBorder />}
+          </IconButton>
+        )}
+        <IconButton
+          sx={{ color: colors.main }}
+          onClick={isDeleted ? onRecover : onClick}
+        >
+          {isDeleted ? <SettingsBackupRestore /> : <Edit />}
         </IconButton>
         <IconButton sx={{ color: colors.alert }} onClick={onDelete}>
           <Delete />
