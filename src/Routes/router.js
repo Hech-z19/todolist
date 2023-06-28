@@ -17,6 +17,14 @@ const router = createBrowserRouter([
         element: <Main />,
       },
       {
+        path: "/favorites",
+        element: <Main />,
+      },
+      {
+        path: "/trash",
+        element: <Main />,
+      },
+      {
         path: "/note",
         element: <NoteForm />,
       },
