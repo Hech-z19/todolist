@@ -8,6 +8,7 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
 import colors from "Utils/colors";
+import status from "Utils/status";
 import translate from "Utils/translate";
 import CustomButton from "Components/Items/CustomButton";
 
@@ -80,6 +81,8 @@ const NoteForm = () => {
           title: formik.values.title,
           subtitle: formik.values.subtitle,
           content: formik.values.content,
+          fav: false,
+          status: status.active,
         };
 
         if (location?.state?.editing) {

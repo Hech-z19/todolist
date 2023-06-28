@@ -1,5 +1,6 @@
 import { useState, forwardRef } from "react";
 import {
+  Box,
   Container,
   Grid,
   Typography,
@@ -11,10 +12,15 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  Divider,
+  IconButton,
 } from "@mui/material";
+import { AddCircle } from "@mui/icons-material";
 import { useNavigate, useLocation } from "react-router-dom";
 
+import { ReactComponent as StartSvg } from "assets/svg/start.svg";
 import colors from "Utils/colors";
+import status from "Utils/status";
 import translate from "Utils/translate";
 import NoteCard from "Components/Items/NoteCard";
 import CustomButton from "Components/Items/CustomButton";
@@ -29,20 +35,33 @@ const Main = () => {
 
   const empty = translate("ROOT_empty_title");
 
+  const getTitle = () => {
+    switch (location.pathname) {
+      case "/favorites":
+        return translate("FAV_title");
+
+      case "/trash":
+        return translate("TRASH_title");
+
+      default:
+        return translate("HOME_title");
+    }
+  };
+
+  const title = getTitle();
+
   const [openSuccess, setOpenSuccess] = useState(
     false || location?.state?.success
   );
+
+  const [openDeleted, setOpenDeleted] = useState(false);
+
   const [openDeleteDialog, setOpenDeleteDialog] = useState({
     state: false,
     id: "",
   });
 
-  const notes = JSON.parse(localStorage.getItem("notes"));
-  const alternativeContainer = {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  };
+  let notes = JSON.parse(localStorage.getItem("notes"));
 
   const handleClose = () => {
     setOpenDeleteDialog({ ...openDeleteDialog, id: "", state: false });
@@ -53,13 +72,57 @@ const Main = () => {
     window.history.replaceState(null, null, window.location.pathname);
   };
 
-  const deleteNote = () => {
+  const deleteNote = (index) => {
     let array = [...notes];
 
-    array.splice(openDeleteDialog.id, 1);
+    const isTrash = location.pathname === "/trash";
+
+    if (isTrash) {
+      array.splice(openDeleteDialog.id, 1);
+    } else {
+      array[index].status = status.deleted;
+    }
+
+    localStorage.setItem("notes", JSON.stringify(array));
+
+    if (isTrash) {
+      setOpenDeleteDialog({ ...openDeleteDialog, id: "", state: false });
+    } else {
+      setOpenDeleted(true);
+    }
+  };
+
+  const favoriteNote = (id) => {
+    let array = [...notes];
+
+    array[id].fav = !array[id].fav;
 
     localStorage.setItem("notes", JSON.stringify(array));
     setOpenDeleteDialog({ ...openDeleteDialog, id: "", state: false });
+  };
+
+  const recoverNote = (id) => {
+    let array = [...notes];
+
+    array[id].status = status.active;
+
+    localStorage.setItem("notes", JSON.stringify(array));
+    setOpenDeleteDialog({ ...openDeleteDialog, id: "", state: false });
+  };
+
+  const switchRenderNotes = (stat, favorite) => {
+    const path = location.pathname;
+
+    switch (path) {
+      case "/favorites":
+        return stat === status.active && favorite === true;
+
+      case "/trash":
+        return stat === status.deleted;
+
+      default:
+        return stat === status.active;
+    }
   };
 
   return (
@@ -68,18 +131,56 @@ const Main = () => {
       sx={{
         flexGrow: 1,
         paddingBottom: "10px",
-        ...(notes === null || notes.length < 1 ? alternativeContainer : {}),
       }}
     >
+      <Typography
+        sx={{
+          "@media (max-width:600px)": {
+            fontSize: "2.5rem",
+          },
+        }}
+        color={colors.main}
+        fontSize="3rem"
+        fontFamily="cursive"
+      >
+        {title}
+      </Typography>
+      <Divider sx={{ margin: "20px 0" }} />
       {notes === null || notes.length < 1 ? (
-        <Typography
-          sx={{ textAlign: "center", color: colors.secondary }}
-          fontSize={28}
-          fontFamily="cursive"
-          fontWeight={600}
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
         >
-          {empty}
-        </Typography>
+          <Typography
+            sx={{ textAlign: "center", color: colors.secondary, mb: "25px" }}
+            fontSize={28}
+            fontFamily="cursive"
+            fontWeight={600}
+          >
+            {empty}
+          </Typography>
+          <IconButton onClick={() => navigate("/note")}>
+            <AddCircle
+              className="heartBeat"
+              sx={{
+                color: colors.opacity_main,
+                fontSize: "3rem",
+                position: "absolute",
+              }}
+            />
+            <AddCircle
+              sx={{
+                color: colors.main,
+                fontSize: "3rem",
+                position: "relative",
+              }}
+            />
+          </IconButton>
+          <StartSvg width="auto" style={{ maxHeight: "500" }} />
+        </Box>
       ) : (
         <Grid
           container
@@ -88,30 +189,40 @@ const Main = () => {
           columnGap={2}
           rowSpacing={3}
         >
-          {notes.map((note, index) => (
-            <Grid item xs={12} md sx={{ padding: 0 }} key={index}>
-              <NoteCard
-                owner={note?.owner}
-                title={note?.title}
-                subtitle={note?.subtitle}
-                content={note?.content}
-                src={`/view/${index}`}
-                onClick={() =>
-                  navigate("/note", {
-                    state: { ...note, id: index, editing: true },
-                  })
-                }
-                onDelete={() =>
-                  setOpenDeleteDialog({
-                    ...openDeleteDialog,
-                    id: index,
-                    state: true,
-                  })
-                }
-                sx={{ margin: "auto" }}
-              />
-            </Grid>
-          ))}
+          {notes.map((note, index) =>
+            switchRenderNotes(note?.status, note?.fav) ? (
+              <Grid item xs={12} md sx={{ padding: 0 }} key={index}>
+                <NoteCard
+                  owner={note?.owner}
+                  title={note?.title}
+                  subtitle={note?.subtitle}
+                  content={note?.content}
+                  src={`/view/${index}`}
+                  onClick={() =>
+                    navigate("/note", {
+                      state: { ...note, id: index, editing: true },
+                    })
+                  }
+                  onDelete={() => {
+                    if (location.pathname === "/trash") {
+                      setOpenDeleteDialog({
+                        ...openDeleteDialog,
+                        id: index,
+                        state: true,
+                      });
+                    } else {
+                      deleteNote(index);
+                    }
+                  }}
+                  onFavorite={() => favoriteNote(index)}
+                  onRecover={() => recoverNote(index)}
+                  favActive={note?.fav}
+                  isDeleted={note?.status === status.deleted}
+                  sx={{ margin: "auto" }}
+                />
+              </Grid>
+            ) : null
+          )}
         </Grid>
       )}
       <Snackbar
@@ -125,6 +236,19 @@ const Main = () => {
           sx={{ width: "100%", boxShadow: "10px 10px 10px grey" }}
         >
           {location?.state?.text}
+        </Alert>
+      </Snackbar>
+      <Snackbar
+        open={openDeleted}
+        autoHideDuration={2000}
+        onClose={() => setOpenDeleted(false)}
+      >
+        <Alert
+          onClose={() => setOpenDeleted(false)}
+          severity="info"
+          sx={{ width: "100%", boxShadow: "10px 10px 10px grey" }}
+        >
+          {translate("ROOT_trash_moved")}
         </Alert>
       </Snackbar>
       <Dialog
