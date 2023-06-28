@@ -18,6 +18,7 @@ const FormContainer = styled("form")({
   justifyContent: "center",
   height: "100%",
   gap: "1rem",
+  padding: "20px",
 });
 
 const NoteForm = () => {
@@ -75,7 +76,6 @@ const NoteForm = () => {
         const array = JSON.parse(notes) || [];
 
         const json = {
-          id: location?.state?.id ? location?.state?.id : array.length + 1,
           owner: formik.values.owner,
           title: formik.values.title,
           subtitle: formik.values.subtitle,
@@ -83,13 +83,7 @@ const NoteForm = () => {
         };
 
         if (location?.state?.editing) {
-          const ind = array.findIndex(
-            (elem) => elem.id === location?.state?.id
-          );
-
-          if (ind !== -1) {
-            array[ind] = json;
-          }
+          array[location?.state?.id] = json;
         } else {
           array.push(json);
         }
