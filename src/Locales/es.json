@@ -18,6 +18,8 @@
     "NOTEFORM_button_save": "Guardar",
     "NOTEFORM_owner_error": "Debe tener 30 caracteres o menos",
     "NOTEFORM_title_error": "Debe tener 80 caracteres o menos",
-    "NOTEFORM_required_error": "Es requerido"
+    "NOTEFORM_required_error": "Es requerido",
+    "NOTEFORM_success_create": "Se ha creado la nota exitosamente",
+    "NOTEFORM_success_edit": "Se ha actualizado correctamente"
   }
 }

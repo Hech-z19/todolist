@@ -18,6 +18,8 @@
     "NOTEFORM_button_save": "Save",
     "NOTEFORM_owner_error": "Must be 30 characters or less",
     "NOTEFORM_title_error": "Must be 80 characters or less",
-    "NOTEFORM_required_error": "It is required"
+    "NOTEFORM_required_error": "It is required",
+    "NOTEFORM_success_create": "The note has been created successfully",
+    "NOTEFORM_success_edit": "It has been updated successfully"
   }
 }
