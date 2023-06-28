@@ -5,5 +5,7 @@
   "dark": "#000000",
   "pale": "#9db8bf",
   "dark_pale": "#596a6f",
-  "alert": "#c70808"
+  "alert": "#c70808",
+  "favorite": "#df91ce",
+  "opacity_main": "#19a7ce7d"
 }
