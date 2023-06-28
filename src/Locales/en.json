@@ -2,11 +2,22 @@
   "translation": {
     "ROOT_title": "To - do",
     "ROOT_button_1": "Create",
+    "ROOT_button_2": "Home",
     "ROOT_empty_title": "No created note found",
 
     "ERROR_page_not_found_title": "Sorry, an unexpected error has occurred.",
     "ERROR_page_not_found_exclamation": "Oops!",
 
-    "CARD_button_edit": "Edit"
+    "CARD_button_edit": "Edit",
+    
+    "NOTEFORM_title": "Create new note",
+    "NOTEFORM_owner_label": "Owner",
+    "NOTEFORM_title_label": "Title",
+    "NOTEFORM_subtitle_label": "Subtitle (optional)",
+    "NOTEFORM_content_label": "Content",
+    "NOTEFORM_button_save": "Save",
+    "NOTEFORM_owner_error": "Must be 30 characters or less",
+    "NOTEFORM_title_error": "Must be 80 characters or less",
+    "NOTEFORM_required_error": "It is required"
   }
 }
