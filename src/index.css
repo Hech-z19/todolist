@@ -15,3 +15,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.ql-editor {
+  height: 150px;
+}
+
+.editor-error {
+  border-color: red;
+  border-width: 1px;
+  border-style: solid;
+}
