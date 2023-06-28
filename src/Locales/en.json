@@ -13,6 +13,7 @@
     "ERROR_page_not_found_exclamation": "Oops!",
     
     "NOTEFORM_title": "Create new note",
+    "NOTEFORM_editing_title": "Change note",
     "NOTEFORM_owner_label": "Owner",
     "NOTEFORM_title_label": "Title",
     "NOTEFORM_subtitle_label": "Subtitle (optional)",
