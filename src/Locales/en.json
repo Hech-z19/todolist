@@ -11,8 +11,6 @@
 
     "ERROR_page_not_found_title": "Sorry, an unexpected error has occurred.",
     "ERROR_page_not_found_exclamation": "Oops!",
-
-    "CARD_button_edit": "Edit",
     
     "NOTEFORM_title": "Create new note",
     "NOTEFORM_owner_label": "Owner",
