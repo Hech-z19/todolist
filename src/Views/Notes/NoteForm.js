@@ -104,7 +104,9 @@ const NoteForm = () => {
         fontFamily="cursive"
         fontWeight={600}
       >
-        {translate("NOTEFORM_title")}
+        {translate(
+          location?.state?.editing ? "NOTEFORM_editing_title" : "NOTEFORM_title"
+        )}
       </Typography>
       <TextField
         id="owner"
