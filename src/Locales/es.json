@@ -22,6 +22,8 @@
     "NOTEFORM_title_error": "Debe tener 80 caracteres o menos",
     "NOTEFORM_required_error": "Es requerido",
     "NOTEFORM_success_create": "Se ha creado la nota exitosamente",
-    "NOTEFORM_success_edit": "Se ha actualizado correctamente"
+    "NOTEFORM_success_edit": "Se ha actualizado correctamente",
+
+    "NOTEDETAIL_empty_title": "La nota no existe o se ha eliminado"
   }
 }
