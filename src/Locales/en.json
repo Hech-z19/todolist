@@ -4,6 +4,10 @@
     "ROOT_button_1": "Create",
     "ROOT_button_2": "Home",
     "ROOT_empty_title": "No created note found",
+    "ROOT_delete_dialog_title": "Are you sure you want to delete the note?",
+    "ROOT_delete_dialog_text": "You should consider that it will be deleted forever and you will not be able to recover it",
+    "ROOT_delete_dialog_button_1": "Cancel",
+    "ROOT_delete_dialog_button_2": "Delete",
 
     "ERROR_page_not_found_title": "Sorry, an unexpected error has occurred.",
     "ERROR_page_not_found_exclamation": "Oops!",
