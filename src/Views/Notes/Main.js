@@ -14,8 +14,10 @@ import {
   DialogTitle,
   Divider,
   IconButton,
+  Fab,
+  Zoom,
 } from "@mui/material";
-import { AddCircle } from "@mui/icons-material";
+import { AddCircle, Add } from "@mui/icons-material";
 import { useNavigate, useLocation } from "react-router-dom";
 
 import { ReactComponent as StartSvg } from "assets/svg/start.svg";
@@ -223,8 +225,24 @@ const Main = () => {
               </Grid>
             ) : null
           )}
+          <Fab
+            onClick={() => navigate("/note")}
+            sx={{
+              position: "absolute",
+              bottom: 50,
+              left: 25,
+              background: colors.main,
+              color: "#fff",
+              "&:hover": {
+                background: colors.secondary,
+              },
+            }}
+          >
+            <Add />
+          </Fab>
         </Grid>
       )}
+
       <Snackbar
         open={openSuccess}
         autoHideDuration={2000}
