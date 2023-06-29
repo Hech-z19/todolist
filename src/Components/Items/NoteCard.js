@@ -67,7 +67,7 @@ const NoteCard = ({
             textOverflow: "ellipsis",
             overflow: "hidden",
           }}
-          onClick={() => navigate(src)}
+          onClick={() => (isDeleted ? null : navigate(src))}
         >
           {title}
         </Typography>

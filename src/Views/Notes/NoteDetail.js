@@ -8,6 +8,7 @@ import {
 import { Edit } from "@mui/icons-material";
 import { useParams, useNavigate } from "react-router-dom";
 
+import status from "Utils/status";
 import translate from "Utils/translate";
 import colors from "Utils/colors";
 
@@ -73,12 +74,19 @@ const NoteDetail = () => {
           >
             <Label variant="h3">{translate("NOTEFORM_owner_label")}</Label>
             <IconButton
-              sx={{ color: colors.main }}
-              onClick={() =>
-                navigate("/note", {
-                  state: { editing: true, ...note, id: params?.id },
-                })
-              }
+              sx={{
+                color: colors.main,
+              }}
+              disabled={note?.status === status?.deleted }
+              onClick={() => {
+                if (note?.status === status?.deleted) {
+                  return;
+                } else {
+                  navigate("/note", {
+                    state: { editing: true, ...note, id: params?.id },
+                  });
+                }
+              }}
             >
               <Edit
                 sx={{
